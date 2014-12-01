@@ -1,4 +1,4 @@
 *.log
-RowData/blog_train_final/*
-StructuredData/blog_train_final/*
+RowData/blog_train_final/
+StructuredData/blog_train_final/
 .idea/
