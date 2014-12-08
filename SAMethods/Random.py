@@ -13,8 +13,6 @@ class RandomMethod(AbstractMethod):
     def setTrainingSamples(self, samples):
         pass
 
-    def __filter(self):
-        pass
 
 
 if __name__ == '__main__':

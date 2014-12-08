@@ -29,6 +29,9 @@ class CVTestMethod:
         curtIter = 0
         markSum = 0.0
         while curtIter < len(self.data):
+
+            print("Iter {0}".format(curtIter))
+
             method = methodClass()
             method.setTrainingSamples(self.data[:curtIter] + self.data[curtIter + 1:])
             markSum += self.testReaction(method, self.data[curtIter])
@@ -44,8 +47,9 @@ class CVTestMethod:
         return markSum / len(testPart)
 
 
+from SAMethods.Random import RandomMethod
+from SAMethods.Dictionary import DictionaryMethod
 if __name__ == '__main__':
     sampletester = CVTestMethod(config.CONSTS["blog_collection_path"], 10)
-    from SAMethods.Random import RandomMethod
-    print(sampletester.runTest(RandomMethod))
-
+    print("Random - {0}".format(sampletester.runTest(RandomMethod)))
+    print("Dict - {0}".format(sampletester.runTest(DictionaryMethod)))

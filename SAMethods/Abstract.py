@@ -16,6 +16,3 @@ class AbstractMethod(metaclass=ABCMeta):
     @abstractclassmethod
     def getReaction(self, text):
         pass
-
-    def __filter(self):
-        pass

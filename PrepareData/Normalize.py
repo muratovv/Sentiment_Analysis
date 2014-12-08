@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 __author__ = 'muratov'
 
-import pymorphy2
 import re
+
+import pymorphy2
+
 
 def normalizeText(text):
     """
@@ -13,6 +15,7 @@ def normalizeText(text):
     normalizedList = list()
     for word in text.split():
         word = re.sub("\W", "", word)
+        word = word.lower()
         word = morph.parse(word)[0].normal_form
         normalizedList.append(word)
     return " ".join(normalizedList)
