@@ -5,11 +5,11 @@ import os
 import logging
 
 from PrepareData.XmlCleanUp import XmlParser
-import projectConfigs
+import ProjectConfigs
 
 
-projectConfigs.CONSTS["loggin_file"] = "{0}.log".format(os.path.basename(__file__))
-projectConfigs.defaultConfigs()
+ProjectConfigs.CONSTS["loggin_file"] = "{0}.log".format(os.path.basename(__file__))
+ProjectConfigs.defaultConfigs()
 
 
 class BuildStructure:
@@ -61,8 +61,8 @@ class BuildStructure:
 
 
 if __name__ == '__main__':
-    bs = BuildStructure(projectConfigs.CONSTS["structured_data_path"],
-                        projectConfigs.CONSTS["blog_collection_path"])
+    bs = BuildStructure(ProjectConfigs.CONSTS["structured_data_path"],
+                        ProjectConfigs.CONSTS["blog_collection_path"])
     i = 0
 
     for file in bs:

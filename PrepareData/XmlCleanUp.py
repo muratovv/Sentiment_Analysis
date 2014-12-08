@@ -5,11 +5,11 @@ import xml.etree.ElementTree as ET
 import os
 import logging
 
-import projectConfigs
+import ProjectConfigs
 
 
-projectConfigs.CONSTS["loggin_file"] = "{0}.log".format(os.path.basename(__file__))
-projectConfigs.setLogConfig()
+ProjectConfigs.CONSTS["loggin_file"] = "{0}.log".format(os.path.basename(__file__))
+ProjectConfigs.setLogConfig()
 
 
 class XmlParser:
@@ -61,8 +61,8 @@ class XmlParser:
 
 
 if __name__ == '__main__':
-    print(projectConfigs.CONSTS["blog_collection_path"])
-    p = XmlParser(projectConfigs.CONSTS["blog_collection_path"], ['real_object', 'score-2', 'text'])
+    print(ProjectConfigs.CONSTS["blog_collection_path"])
+    p = XmlParser(ProjectConfigs.CONSTS["blog_collection_path"], ['real_object', 'score-2', 'text'])
     p = iter(p)
     i = 0
     while i < 3:
