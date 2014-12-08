@@ -14,11 +14,15 @@ CONSTS["loggin_level"] = logging.DEBUG
 #
 
 # Path consts
+CONSTS["structured_data"] = "StructuredData"
+CONSTS["row_data"] = "RowData"
 CONSTS["blog_collection_path"] = "RowData/blog_train_final"
 CONSTS["structured_data_path"] = "StructuredData/blog_train_final"
 #
 
 def setCollectionPath():
+    CONSTS["structured_data"] = os.path.join(CONSTS["base_path"], CONSTS["structured_data"])
+    CONSTS["row_data"] = os.path.join(CONSTS["base_path"], CONSTS["row_data"])
     CONSTS["blog_collection_path"] = os.path.join(CONSTS["base_path"], CONSTS["blog_collection_path"])
     CONSTS["structured_data_path"] = os.path.join(CONSTS["base_path"], CONSTS["structured_data_path"])
 
@@ -31,16 +35,12 @@ def setLogConfig():
         logging.basicConfig(format=CONSTS["loggin_format"], level=CONSTS["loggin_level"], filename=path)
 
 
-
 def defaultConfigs():
     setLogConfig()
     setCollectionPath()
 
 
+defaultConfigs()
 
 if __name__ == '__main__':
-    logging.debug("Отладочное сообщение")
-    logging.info("Информационное сообщение")
-    logging.warning("Предупреждение")
-    logging.error("Ошибка")
-    logging.critical("Critical error")
+    pass

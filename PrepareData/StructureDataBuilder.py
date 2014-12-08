@@ -13,24 +13,36 @@ projectConfigs.defaultConfigs()
 
 
 class BuildStructure:
-    def __init__(self, destPath, xmlPath):
+    #TODO переназвать класс.
+    """
+    Класс для потоковой обработки входных файлов.
+    """
+
+    def __init__(self, destPath, xmlDir):
+        """
+        :param destPath: Папка в которой будет хранится выборка.
+        :param xmlDir: Папка с исходными текстами.
+        :return:
+        """
         self.destPath = destPath
-        self.xmlPath = xmlPath
-        self.__createDir("1")
-        self.__createDir("2")
-        self.__strucure()
+        self.xmlPath = xmlDir
 
-
-    def __createDir(self, folder):
+    def createContexDir(self, folder):
         path = os.path.join(self.destPath, folder)
         if not os.path.exists(path):
             os.makedirs(path)
             logging.info("created {0}".format(path))
 
-    def writeFile(self, dest, text):
-        with open(dest, "w") as file:
+    def writeFile(self, dest, fileName, text):
+        """
+        :param dest: относительный путь.
+        :param text: записываемый текст.
+        :return:
+        """
+        path = os.path.join(self.destPath, dest, fileName)
+        with open(path, "w") as file:
             file.write(text)
-            logging.info("write {0}".format(dest))
+            logging.info("write {0}".format(path))
 
     def __strucure(self):
         parser = XmlParser(self.xmlPath, ["score-2", "text"], True)
@@ -39,7 +51,24 @@ class BuildStructure:
             self.writeFile(path, file["text"])
             logging.info("write {0}".format(path))
 
+    def __iter__(self):
+        self.it = XmlParser(self.xmlPath, ["score-2", "text"], True)
+        return iter(self.it)
+
+    def __next__(self):
+        res = next(self.it)
+        return res
+
 
 if __name__ == '__main__':
     bs = BuildStructure(projectConfigs.CONSTS["structured_data_path"],
                         projectConfigs.CONSTS["blog_collection_path"])
+    i = 0
+
+    for file in bs:
+        print(file)
+        i += 1
+        if i == 3:
+            break
+
+

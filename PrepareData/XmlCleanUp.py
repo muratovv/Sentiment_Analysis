@@ -21,7 +21,7 @@ class XmlParser:
         """
         :param pathToDirectory: Путь к папке с xml-файлами. Вложенные папки поддерживаются;
         :param needAttributes: Доставаемые атрибуты;
-        :param addPath: Добалять ли путь до файла в конечный словарь.
+        :param addPath: Добалять ли путь до файла в конечный словарь. XmlParse["file"]
         :return:
         """
         self.needAttributes = needAttributes
@@ -54,13 +54,14 @@ class XmlParser:
         for root, dirs, files in os.walk(self.directory):
             for file in files:
                 filePath = os.path.join(root, file)
-                if os.path.splitext(filePath) == "xml":
+                if os.path.splitext(filePath)[1] == ".xml":
                     result = self.__parseNextFile(filePath)
                     logging.info("file {0} parsed".format(filePath))
                     yield result
 
 
 if __name__ == '__main__':
+    print(projectConfigs.CONSTS["blog_collection_path"])
     p = XmlParser(projectConfigs.CONSTS["blog_collection_path"], ['real_object', 'score-2', 'text'])
     p = iter(p)
     i = 0
