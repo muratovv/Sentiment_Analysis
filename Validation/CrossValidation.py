@@ -33,7 +33,11 @@ class CVTestMethod:
             print("Iter {0}".format(curtIter))
 
             method = methodClass()
-            method.setTrainingSamples(self.data[:curtIter] + self.data[curtIter + 1:])
+            samples = []
+            for trainSet in self.data[:curtIter] + self.data[curtIter + 1:]:
+                for example in trainSet:
+                    samples.append(example)
+            method.setTrainingSamples(samples)
             markSum += self.testReaction(method, self.data[curtIter])
             curtIter += 1
         return markSum / len(self.data)
@@ -41,7 +45,7 @@ class CVTestMethod:
     def testReaction(self, method, testPart):
         markSum = 0
         for request in testPart:
-            answer = method.getReaction(request[0])
+            answer = method.predict(request[0])
             if answer == request[1]:
                 markSum += 1
         return markSum / len(testPart)
@@ -49,7 +53,11 @@ class CVTestMethod:
 
 from SAMethods.Random import RandomMethod
 from SAMethods.Dictionary import DictionaryMethod
+from SAMethods.NaiveBayes import NaiveBayes
+
 if __name__ == '__main__':
     sampletester = CVTestMethod(config.CONSTS["blog_collection_path"], 10)
     print("Random - {0}".format(sampletester.runTest(RandomMethod)))
+    print("Naive Bayes - {0}".format(sampletester.runTest(NaiveBayes)))
     print("Dict - {0}".format(sampletester.runTest(DictionaryMethod)))
+

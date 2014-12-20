@@ -22,8 +22,7 @@ class DictionaryMethod(AbstractMethod):
     def setTrainingSamples(self, samples):
         pass
 
-
-    def getReaction(self, text):
+    def predict(self, text):
         sum_ = 0.0
         text = normalizeText(text)
         for keyWord in sentimentDict.keys():
@@ -37,4 +36,4 @@ class DictionaryMethod(AbstractMethod):
 
 if __name__ == '__main__':
     d = DictionaryMethod()
-    print(d.getReaction("адекватное"))
+    print(d.predict("адекватное"))

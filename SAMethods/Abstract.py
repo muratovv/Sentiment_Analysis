@@ -14,5 +14,5 @@ class AbstractMethod(metaclass=ABCMeta):
         pass
 
     @abstractclassmethod
-    def getReaction(self, text):
+    def predict(self, text):
         pass

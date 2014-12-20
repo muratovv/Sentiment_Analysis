@@ -7,14 +7,12 @@ from SAMethods.Abstract import AbstractMethod
 
 
 class RandomMethod(AbstractMethod):
-    def getReaction(self, text):
+    def predict(self, text):
         return random.choice([1, 2])
 
     def setTrainingSamples(self, samples):
         pass
 
-
-
 if __name__ == '__main__':
     r = RandomMethod()
-    print(r.getReaction("123"))
+    print(r.predict("123"))
