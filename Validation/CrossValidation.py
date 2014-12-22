@@ -30,7 +30,7 @@ class CVTestMethod:
         markSum = 0.0
         while curtIter < len(self.data):
 
-            print("Iter {0}".format(curtIter))
+            print("Testing part {0}".format(curtIter))
 
             method = methodClass()
             samples = []

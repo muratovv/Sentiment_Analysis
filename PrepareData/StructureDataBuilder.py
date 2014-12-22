@@ -13,7 +13,6 @@ ProjectConfigs.defaultConfigs()
 
 
 class BuildStructure:
-    #TODO переназвать класс.
     """
     Класс для потоковой обработки входных файлов.
     """
@@ -40,7 +39,7 @@ class BuildStructure:
         :return:
         """
         path = os.path.join(self.destPath, dest, fileName)
-        with open(path, "w") as file:
+        with open(path, "w+") as file:
             file.write(text)
             logging.info("write {0}".format(path))
 
@@ -63,12 +62,5 @@ class BuildStructure:
 if __name__ == '__main__':
     bs = BuildStructure(ProjectConfigs.CONSTS["structured_data_path"],
                         ProjectConfigs.CONSTS["blog_collection_path"])
-    i = 0
-
-    for file in bs:
-        print(file)
-        i += 1
-        if i == 3:
-            break
 
 
