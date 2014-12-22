@@ -4,3 +4,5 @@ StructuredData/blog_train_final/
 .idea/
 logs
 RowData/dictionary.txt
+poligon.py
+StructuredData/normalize_blog_train_final
